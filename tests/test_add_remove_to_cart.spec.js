@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { Products } from "../pages/products.js";
 import { Login } from "../pages/login.js";
 
-test("standard_user should login and logout successfully", async ({ page }) => {
+test("Checking Cart add remove with updation in quantity functionality", async ({ page }) => {
   const login = new Login(page);
 
   await page.goto(

@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-// i am sitll working on this
 import { Login } from "../pages/login.js";
 import { Products } from "../pages/products.js";
 
