@@ -1,10 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { Products } from "../pages/products.js";
 import { Login } from "../pages/login.js";
+import { cart_url } from "../urls/base.js";
 test("Products page should display all required elements", async ({ page }) => {
   const login = new Login(page);
 
-  await page.goto("https://app.thetestingacademy.com/playwright/ttacart/");
+  await page.goto(cart_url);
 
   await expect(login.USER_NAME).toBeVisible();
   await expect(login.PASSWORD).toBeVisible();

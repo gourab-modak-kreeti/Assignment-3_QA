@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { Login } from "../pages/login";
-
+import { cart_url } from "../urls/base.js";
 const users = [
   "standard_user",
   "problem_user",
@@ -12,7 +12,7 @@ const users = [
 for (const username of users) {
   test(`${username} should login and logout successfully`, async ({ page }) => {
     const login = new Login(page);
-    await page.goto("https://app.thetestingacademy.com/playwright/ttacart/");
+    await page.goto(cart_url);
     await expect(login.USER_NAME).toBeVisible();
     await expect(login.PASSWORD).toBeVisible();
     await expect(login.LOGIN_BUTTON).toBeVisible();
@@ -29,7 +29,7 @@ for (const username of users) {
 test("locked out user should not be able to login", async ({ page }) => {
   const login = new Login(page);
 
-  await page.goto("https://app.thetestingacademy.com/playwright/ttacart/");
+  await page.goto(cart_url);
 
   await expect(login.USER_NAME).toBeVisible();
   await expect(login.PASSWORD).toBeVisible();

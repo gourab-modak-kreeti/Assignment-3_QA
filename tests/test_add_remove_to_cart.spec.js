@@ -1,12 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { Products } from "../pages/products.js";
 import { Login } from "../pages/login.js";
+import { cart_url } from "../urls/base.js";
 
 test("Checking Cart add remove with updation in quantity functionality", async ({ page }) => {
   const login = new Login(page);
 
   await page.goto(
-    "https://app.thetestingacademy.com/playwright/ttacart/"
+    cart_url
   );
 
   await login.login("standard_user", "tta_secret");

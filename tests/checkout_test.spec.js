@@ -4,7 +4,7 @@ import { Login } from "../pages/login.js";
 import { Products } from "../pages/products.js";
 import { Cart } from "../pages/cart.js";
 import { Checkout } from "../pages/checkout.js";
-
+import { cart_url } from "../urls/base.js";
 const USERNAME = "standard_user";
 const PASSWORD = "tta_secret";
 
@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
   const login = new Login(page);
 
   await page.goto(
-    "https://app.thetestingacademy.com/playwright/ttacart/"
+    cart_url
   );
 
   await login.login(USERNAME, PASSWORD);
