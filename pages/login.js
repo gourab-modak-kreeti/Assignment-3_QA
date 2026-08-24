@@ -16,10 +16,6 @@ export class Login {
   }
 
   async login(username, password) {
-    await this.page.goto(
-      "https://app.thetestingacademy.com/playwright/ttacart/",
-    );
-
     await this.USER_NAME.fill(username);
     await this.PASSWORD.fill(password);
     await this.LOGIN_BUTTON.click();
