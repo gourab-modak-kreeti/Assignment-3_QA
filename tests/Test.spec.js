@@ -8,7 +8,7 @@ const PASSWORD = "password";
 test("should add three products to cart", async ({ page }) => {
   const login = new Login(page);
 
-//   await page.goto("https://app.thetestingacademy.com/playwright/ttacart/");
+  await page.goto("https://app.thetestingacademy.com/playwright/ttacart/");
 
   await login.login("standard_user", "tta_secret");
 
