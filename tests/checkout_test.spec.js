@@ -67,17 +67,11 @@ test("should complete checkout successfully", async ({ page }) => {
   await expect(checkout.JUNIOR_ONESIE_TEXT).toBeVisible();
   await expect(checkout.BIKELIGHT_TEXT).toBeVisible();
 
-  await expect(
-    page.getByRole("heading", { name: "Price Total" }),
-  ).toBeVisible();
+  await expect(checkout.HEADING_PRICE_TOTAL).toBeVisible();
 
-  await expect(
-    page.getByRole("heading", { name: "Payment Information:" }),
-  ).toBeVisible();
+  await expect(checkout.PAYMENT_INFO_HEADING).toBeVisible();
 
-  await expect(
-    page.getByRole("heading", { name: "Shipping Information:" }),
-  ).toBeVisible();
+  await expect(checkout.SHIPPING_INFO_HEADING).toBeVisible();
 
   // Complete order
   await checkout.FINISH.click();
@@ -96,5 +90,5 @@ test("should complete checkout successfully", async ({ page }) => {
   await expect(page).toHaveURL(new RegExp(`${cart_page_url}$`));
 
   // Verify cart is empty
-  await expect(page.locator('[data-test="cart-empty"]')).toBeVisible();
+  await expect(checkout.CART_EMPTY).toBeVisible();
 });
