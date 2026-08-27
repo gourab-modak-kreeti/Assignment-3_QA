@@ -80,5 +80,12 @@ export class Checkout {
     this.FOOTER_COPY = page.locator(
       '[data-test="footer-copy"]'
     );
+
+
+    //Items
+    this.TSHIRT_TEXT =page.getByText("Test.allTheThings() T-Shirt (");
+    this.PRACTICE_BACKPACK_TEXT =page.getByText("TTA Practice Backpack");
+    this.JUNIOR_ONESIE_TEXT =page.getByText("TTA Junior Tester Onesie");
+    this.BIKELIGHT_TEXT =page.getByText("TTA Bike Light");
   }
 }

@@ -1,8 +1,6 @@
 import { test, expect } from "@playwright/test";
-// i am sitll working on this
 import { Login } from "../pages/login.js";
-import { Products } from "../pages/products.js";
-import { Cart } from "../pages/cart.js";
+import { Filter } from "../pages/filter.js";
 import { cart_url } from "../urls/base.js";
 const USERNAME = "standard_user";
 const PASSWORD = "tta_secret";
@@ -15,9 +13,10 @@ test.beforeEach(async ({ page }) => {
   await login.login(USERNAME, PASSWORD);
 });
 test("test", async ({ page }) => {
-  await page.locator('[data-test="title-row"] svg').click();
-  await page.locator('[data-test="product-sort-container"]').selectOption("za");
-  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+  const filter = new Filter(page);
+  await filter.FILTER_BUTTON.click();
+  await filter.PRODUCT_SORT_CONTAINER.selectOption("za");
+  await expect(filter.MAIN_CONTAINER).toMatchAriaSnapshot(`
     - main:
       - article:
         - link:
@@ -62,10 +61,8 @@ test("test", async ({ page }) => {
         - text: /This classic TTA t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests\\. Super-soft and comfy ringspun combed cotton\\. \\$\\d+\\.\\d+/
         - button "Add to cart"
     `);
-  await page
-    .locator('[data-test="product-sort-container"]')
-    .selectOption("lohi");
-  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+  await filter.PRODUCT_SORT_CONTAINER.selectOption("lohi");
+  await expect(filter.MAIN_CONTAINER).toMatchAriaSnapshot(`
     - main:
       - article:
         - link:
@@ -110,10 +107,8 @@ test("test", async ({ page }) => {
         - text: /It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office\\. \\$\\d+\\.\\d+/
         - button "Add to cart"
     `);
-  await page
-    .locator('[data-test="product-sort-container"]')
-    .selectOption("hilo");
-  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+  await filter.PRODUCT_SORT_CONTAINER.selectOption("hilo");
+  await expect(filter.MAIN_CONTAINER).toMatchAriaSnapshot(`
     - main:
       - article:
         - link:

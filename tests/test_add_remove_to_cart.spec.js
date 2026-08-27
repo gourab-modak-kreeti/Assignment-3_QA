@@ -1,36 +1,37 @@
 import { test, expect } from "@playwright/test";
+
 import { Products } from "../pages/products.js";
 import { Login } from "../pages/login.js";
+
 import { cart_url } from "../urls/base.js";
+import { product_page_url } from "../Routes/routes.js";
 
-test("Checking Cart add remove with updation in quantity functionality", async ({ page }) => {
+test("Checking Cart add remove with updation in quantity functionality", async ({
+  page,
+}) => {
   const login = new Login(page);
+  const products = new Products(page);
 
-  await page.goto(
-    cart_url
-  );
+  await page.goto(cart_url);
 
   await login.login("standard_user", "tta_secret");
 
-  const products = new Products(page);
+  await expect(page).toHaveURL(new RegExp(`${product_page_url}$`));
 
   await products.ADD_TEST_ALLTHETHINGS_TSHIRT.click();
-
   await expect(products.SHOPPING_CART_BADGE).toContainText("1");
 
   await products.ADD_FLEECE_JACKET.click();
-
   await expect(products.SHOPPING_CART_BADGE).toContainText("2");
 
   await products.REMOVE_TEST_ALLTHETHINGS_TSHIRT.click();
-
   await expect(products.SHOPPING_CART_BADGE).toContainText("1");
 
   await products.ADD_BOLT_T_SHIRT.click();
-
   await products.ADD_JUNIOR_TESTER_ONESIE.click();
 
   await expect(products.REMOVE_BOLT_T_SHIRT).toContainText("Remove");
-
   await expect(products.REMOVE_FLEECE_JACKET).toContainText("Remove");
+
+  await expect(page).toHaveURL(new RegExp(`${product_page_url}$`));
 });
